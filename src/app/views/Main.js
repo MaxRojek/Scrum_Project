@@ -1,25 +1,52 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
+import request from "request";
+import * as fs from "fs";
 
 const fetchData = (fetchData) => {
-  console.log(fetchData);
-  fetch("https://api.sejda.com/v2/html-pdf", fetchData)
-    .then((res) => {
-      console.log(res.json());
-    })
-    .catch((e) => console.error(e));
+  //   console.log(fetchData);
+  //   fetch("https://api.sejda.com/v2/html-pdf", fetchData)
+  //     .then((res) => {
+  //       console.log(res.json());
+  //     })
+  //     .catch((e) => console.error(e));
 };
 
 const onSubmit = (values) => {
-  const data = {
-    method: "POST",
+  //   const data = {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: "Token: api_D994DB201DFC418A929F4BF0BDFD12DF",
+  //     },
+  //     body: values,
+  //   };
+  //   fetchData(data);
+  var opts = {
+    uri: "https://api.sejda.com/v2/html-pdf",
     headers: {
-      "Content-Type": "application/json",
       Authorization: "Token: api_D994DB201DFC418A929F4BF0BDFD12DF",
     },
-    body: values,
+    json: {
+      url: "https://airtable.com",
+      viewportWidth: 1200,
+    },
   };
-  fetchData(data);
+
+  request
+    .post(opts)
+    .on("error", function (err) {
+      return console.error(err);
+    })
+    .on("response", function (response) {
+      if (response.statusCode === 200) {
+        response.pipe(fs.createWriteStream("/tmp/out.pdf")).on("finish", function () {
+          console.log("PDF saved to disk");
+        });
+      } else {
+        return console.error("Got code: " + response.statusCode);
+      }
+    });
 };
 
 export const Main = () => (
