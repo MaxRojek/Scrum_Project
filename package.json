@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-final-form": "^6.5.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-final-form": "6.5.0",
+    "final-form": "4.20.0",
     "react-scripts": "3.4.1"
   },
   "scripts": {
