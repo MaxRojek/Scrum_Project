@@ -7,7 +7,7 @@
     "react-dom": "16.13.1",
     "react-final-form": "6.5.0",
     "final-form": "4.20.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
