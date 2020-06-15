@@ -1,13 +1,13 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
-import request from "request";
-import * as fs from "fs";
 
-const fetchData = (fetchData) => {
-  console.log(fetchData);
-  fetch("https://api.sejda.com/v2/html-pdf", fetchData)
+const fetchData = async (fetchData) => {
+  return fetch("https://api.sejda.com/v2/html-pdf", fetchData)
     .then((res) => {
-      console.log(res.json());
+      res.json();
+    })
+    .then((xd) => {
+      console.log(xd);
     })
     .catch((e) => console.error(e));
 };
