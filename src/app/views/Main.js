@@ -15,11 +15,12 @@ const fetchData = async (fetchData) => {
 const onSubmit = (values) => {
   const data = {
     method: "POST",
+    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Token: api_D994DB201DFC418A929F4BF0BDFD12DF",
     },
-    body: JSON.stringify(values),
+    body: JSON.stringify({ url: "https://airtable.com" }), //JSON.stringify(values),
   };
   fetchData(data);
 };
