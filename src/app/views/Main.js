@@ -11,6 +11,7 @@ const fetchData = async (fetchData) => {
     })
     .catch(function (error) {
       console.log(error);
+      alert("coś poszło nie tak");
     });
 };
 
