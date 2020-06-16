@@ -4,10 +4,11 @@ import { Form, Field } from "react-final-form";
 const fetchData = async (fetchData) => {
   return fetch("https://api.sejda.com/v2/html-pdf", fetchData)
     .then((res) => {
+      console.log("Res", res);
       res.json();
     })
     .then((xd) => {
-      console.log(xd);
+      console.log("XD", xd);
     })
     .catch((e) => console.error(e));
 };
@@ -20,7 +21,7 @@ const onSubmit = (values) => {
       "Content-Type": "application/json",
       Authorization: "Token: api_D994DB201DFC418A929F4BF0BDFD12DF",
     },
-    body: JSON.stringify({ url: "https://airtable.com" }), //JSON.stringify(values),
+    body: { url: "https://airtable.com" }, //JSON.stringify(values),
   };
   fetchData(data);
 };
