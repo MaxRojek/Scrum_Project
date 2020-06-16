@@ -1,25 +1,27 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
+import Axios from "axios";
 
 const fetchData = async (fetchData) => {
-  return fetch("https://api.sejda.com/v2/html-pdf", fetchData)
-    .then((res) => {
-      console.log("Res", res);
-      res.json();
+  console.log(fetchData);
+  return Axios.post("https://api.sejda.com/v2/html-pdf", fetchData)
+    .then(function (response) {
+      console.log(response);
     })
-    .then((xd) => {
-      console.log("XD", xd);
-    })
-    .catch((e) => console.error(e));
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 const onSubmit = (values) => {
   const data = {
-    method: "POST",
-    mode: "no-cors",
+    origin: "*",
+    crossDomain: true,
     headers: {
+      ...Axios.defaults.headers.common,
       "Content-Type": "application/json",
       Authorization: "Token: api_D994DB201DFC418A929F4BF0BDFD12DF",
+      "Access-Control-Allow-Origin": "*",
     },
     body: { url: "https://airtable.com" }, //JSON.stringify(values),
   };
